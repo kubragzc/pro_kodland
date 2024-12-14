@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+        body {
+            position: relative;
+            min-height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 10px;
+            background-color: #f1f1f1;
+        }
+
+        .score {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e1e1e1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d1e7dd;
+            color: #0f5132;
+            border: 1px solid #badbcc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .result.failed {
+            background-color: #f8d7da;
+            color: #842029;
+            border-color: #f5c2c7;
+        }
+
+        header {
+            background-color:rgb(50, 4, 131);
+            color:white;
+            padding:10px;    
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <header><h1>Quiz</h1></header>
+    <form action="/" method="POST">
+        <h2>   Soru 1: Bilgisayar görüşü uygulamasında nesne tespiti için kullanılan derin öğrenme algoritması hangisidir?</h2>
+        <input type="text" name="q1" id="q1" placeholder="Cevabınızı giriniz..."><br>
+
+        <h2>   Soru 2: NLP'nin temel amacı nedir ve hangi alanlarda kullanılır?</h2>
+        <input type="radio" name="q2" id="q2_1" value="option1"> Doğal dilin yapılarını çözmek ve insan dilini anlamak için<br>
+        <input type="radio" name="q2" id="q2_2" value="option2"> Yapay zeka ile ilgili sorunları çözmek için<br>
+        <input type="radio" name="q2" id="q2_3" value="option3"> Moleküler biyolojide kullanılmak için<br>
+
+        <h2>   Soru 3: Python uygulamalarında yapay zeka modelleri hangi amaçlarla kullanılabilir ve hangi alanlarda sıklıkla uygulanır?</h2>
+        <input type="radio" name="q3" id="q3_1" value="option1"> Veri analizi, görüntü tanıma ve dil işleme gibi alanlarda kullanılabilir.<br>
+        <input type="radio" name="q3" id="q3_2" value="option2"> Grafik tasarımında ve müzik prodüksiyonunda kullanılır.<br>
+        <input type="radio" name="q3" id="q3_3" value="option3"> Tarım ve inşaat sektörlerinde kullanılmaktadır.<br>
+
+        <h2>   Soru 4 : Hangi Python kütüphanesi doğal dil işleme (NLP) için kullanılır ve özellikle metin analizi görevlerini destekler?</h2>
+        <input type="text" name="q4" id="q4" placeholder="Cevabınızı giriniz..."><br><br>
+
+        <input type="submit" value="Submit Answers" style="margin: 20px;">
+    </form>
+
+    {% if result_message is not none %}
+    <div class="score">
+        <p>En Yüksek Puan: {{ best_score }}</p>
+    </div>
+    {% endif %}
+
+    {% if result_message is not none %}
+    <div class="result {% if total_score < 75 %}failed{% endif %}">
+        <p>{{ result_message }} - Puanınız: {{ total_score }}</p>
+    </div>
+    {% endif %}
+
+    <footer>
+        Kübra Gezici tarafından geliştirildi.
+    </footer>
+</body>
+</html>
